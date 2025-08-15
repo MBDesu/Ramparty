@@ -57,6 +57,26 @@ void Game::gameLoop() {
       return;
     }
 
+    if (input.isKeyHeld(SDL_SCANCODE_UP)) {
+      Vector2<float *> currentPosition = this->_player.getPosition();
+      *(currentPosition.y) -= 4.0f;
+    }
+
+    if (input.isKeyHeld(SDL_SCANCODE_DOWN)) {
+      Vector2<float *> currentPosition = this->_player.getPosition();
+      *(currentPosition.y) += 4.0f;
+    }
+
+    if (input.isKeyHeld(SDL_SCANCODE_LEFT)) {
+      Vector2<float *> currentPosition = this->_player.getPosition();
+      *(currentPosition.x) -= 4.0f;
+    }
+
+    if (input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
+      Vector2<float *> currentPosition = this->_player.getPosition();
+      *(currentPosition.x) += 4.0f;
+    }
+
     const int CURRENT_TIME_MS = SDL_GetTicks();
     const int ELAPSED_TIME_MS = CURRENT_TIME_MS - lastUpdateTime;
     this->update(std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME));
@@ -68,7 +88,8 @@ void Game::gameLoop() {
 
 void Game::draw(Graphics &graphics) {
   graphics.clear();
-  this->_player.draw(graphics, 100, 100);
+  this->_player.draw(graphics, *this->_player.getPosition().x,
+                     *this->_player.getPosition().y);
   graphics.flip();
 }
 

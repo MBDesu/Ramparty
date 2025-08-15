@@ -19,11 +19,11 @@ public:
   void playAnimation(std::string name, bool once = false);
   void update(int elapsedTime);
   void draw(Graphics &graphics, int x, int y);
-  virtual void setupAnimations();
+  // virtual void setupAnimations();
 
 private:
   std::map<std::string, std::vector<SDL_Rect>> _animation;
-  std::map<std::string, Vector2> _offsets;
+  std::map<std::string, Vector2<int>> _offsets;
 };
 
 #endif

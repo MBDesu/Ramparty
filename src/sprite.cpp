@@ -30,4 +30,11 @@ void Sprite::draw(Graphics &graphics, int x, int y) {
                        &destinationRectangle);
 }
 
+Vector2<float *> Sprite::getPosition() { return {&_x, &_y}; }
+
+void Sprite::setPosition(Vector2<float> *vec) {
+  this->_x = vec->x;
+  this->_y = vec->y;
+}
+
 void Sprite::update() {}

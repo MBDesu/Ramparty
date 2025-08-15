@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "globals.h"
+
 #include <SDL.h>
 
 struct Graphics; // forward declaration
@@ -15,6 +17,8 @@ public:
   virtual ~Sprite();
   virtual void update();
   void draw(Graphics &graphics, int x, int y);
+  Vector2<float *> getPosition();
+  void setPosition(Vector2<float> *vec);
 
 private:
   SDL_Rect _sourceRect;
