@@ -1,0 +1,9 @@
+CompileFlags:
+  Add: [
+    "-L/opt/homebrew/lib",
+    "-llibSDL2.a",
+    "-llibSDL2_image.a",
+    "-I/Users/mbd/workspace/c++/Ramparty/headers",
+    "-I/opt/homebrew/include/SDL2",
+    "-D_THREAD_SAFE"
+  ]
