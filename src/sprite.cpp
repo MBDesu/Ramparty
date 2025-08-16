@@ -32,6 +32,9 @@ void Sprite::draw(Graphics &graphics, int x, int y) {
 
 Vector2<float *> Sprite::getPosition() { return {&_x, &_y}; }
 
+int Sprite::getWidth() { return this->_sourceRect.w * globals::SPRITE_SCALE; }
+int Sprite::getHeight() { return this->_sourceRect.h * globals::SPRITE_SCALE; }
+
 void Sprite::setPosition(Vector2<float> *vec) {
   this->_x = vec->x;
   this->_y = vec->y;

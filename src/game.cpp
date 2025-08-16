@@ -1,8 +1,11 @@
 #include "game.h"
+#include "SDL_log.h"
+#include "globals.h"
 #include "graphics.h"
 #include "input.h"
 
 #include <SDL.h>
+#include <algorithm>
 #include <iostream>
 
 namespace {
@@ -59,22 +62,42 @@ void Game::gameLoop() {
 
     if (input.isKeyHeld(SDL_SCANCODE_UP)) {
       Vector2<float *> currentPosition = this->_player.getPosition();
-      *(currentPosition.y) -= 4.0f;
+      *(currentPosition.y) -= globals::CURSOR_SPEED;
+      *currentPosition.y =
+          std::clamp((int)*currentPosition.y, 0,
+                     globals::SCREEN_HEIGHT - this->_player.getHeight());
+      SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "(%.0f, %.0f)",
+                  *currentPosition.x, *currentPosition.y);
     }
 
     if (input.isKeyHeld(SDL_SCANCODE_DOWN)) {
       Vector2<float *> currentPosition = this->_player.getPosition();
-      *(currentPosition.y) += 4.0f;
+      *(currentPosition.y) += globals::CURSOR_SPEED;
+      *currentPosition.y =
+          std::clamp((int)*currentPosition.y, 0,
+                     globals::SCREEN_HEIGHT - this->_player.getHeight());
+      SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "(%.0f, %.0f)",
+                  *currentPosition.x, *currentPosition.y);
     }
 
     if (input.isKeyHeld(SDL_SCANCODE_LEFT)) {
       Vector2<float *> currentPosition = this->_player.getPosition();
-      *(currentPosition.x) -= 4.0f;
+      *(currentPosition.x) -= globals::CURSOR_SPEED;
+      *currentPosition.x =
+          std::clamp((int)*currentPosition.x, 0,
+                     globals::SCREEN_WIDTH - this->_player.getWidth());
+      SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "(%.0f, %.0f)",
+                  *currentPosition.x, *currentPosition.y);
     }
 
     if (input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
       Vector2<float *> currentPosition = this->_player.getPosition();
-      *(currentPosition.x) += 4.0f;
+      *(currentPosition.x) += globals::CURSOR_SPEED;
+      *currentPosition.x =
+          std::clamp((int)*currentPosition.x, 0,
+                     globals::SCREEN_WIDTH - this->_player.getWidth());
+      SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "(%.0f, %.0f)",
+                  *currentPosition.x, *currentPosition.y);
     }
 
     const int CURRENT_TIME_MS = SDL_GetTicks();
@@ -83,6 +106,7 @@ void Game::gameLoop() {
     lastUpdateTime = CURRENT_TIME_MS;
 
     this->draw(graphics);
+    SDL_Delay(16);
   }
 }
 

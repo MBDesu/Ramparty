@@ -19,6 +19,8 @@ public:
   void draw(Graphics &graphics, int x, int y);
   Vector2<float *> getPosition();
   void setPosition(Vector2<float> *vec);
+  int getHeight();
+  int getWidth();
 
 private:
   SDL_Rect _sourceRect;

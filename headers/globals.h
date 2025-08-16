@@ -4,6 +4,7 @@
 namespace globals {
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
+const int CURSOR_SPEED = 4;
 const float SPRITE_SCALE = 0.5f;
 } // namespace globals
 
